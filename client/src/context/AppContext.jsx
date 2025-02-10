@@ -10,6 +10,8 @@ export const AppContextProvider = (props) => {
 
   const [allCourses, setAllCourses] = useState([]);
   const [isEducator, setIsEducator] = useState(true);
+  const [enrolledCourses, setEnrolledCourses] = useState([]);
+
 
   const fetchAllCourses = async () => {
     setAllCourses(dummyCourses);
@@ -56,9 +58,15 @@ export const AppContextProvider = (props) => {
       return totalLectures;
     }
 
+// fetch user Enrolled Courses
+    const fetchUserEnrolledCourses = async () => {
+      setEnrolledCourses(dummyCourses);
+    }
+
 
   useEffect(() => {
-    fetchAllCourses();
+    fetchAllCourses()
+    fetchUserEnrolledCourses()
   }, []); // Added empty dependency array to run only once
 
   const value = {
@@ -70,6 +78,9 @@ export const AppContextProvider = (props) => {
     calculateChapterTime,
     calculateCourseDuration,
     calculateNoOfLectures,
+    enrolledCourses,
+    fetchUserEnrolledCourses,
+    
   };
 
   return <AppContext.Provider value={value}>{props.children}</AppContext.Provider>;
