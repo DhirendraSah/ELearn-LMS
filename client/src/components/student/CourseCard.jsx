@@ -8,12 +8,12 @@ const CourseCard = ({ course }) => {
   const { currency, calculateRating } = useContext(AppContext);
 
   return (
-    <Link to={'/course/ + course_id'} onClick={() => scrollTo(0,0)}
+    <Link to={`/course/${course._id}`} onClick={() => scrollTo(0, 0)}
     className='pb-6 overflow-hidden border rounded-lg border-gray-500/30'>
       <img className='w-fill' src={course.courseThumbnail} alt="" />
       <div className='p-3 text-left'>
         <h3 className='text-base font-semibold'>{course.courseTitle}</h3>
-        <p className='text-gray-500'>{course.educator.name}</p>
+        <p className='text-gray-500'>By E-Learn Developer</p>
         <div className='flex items-center space-x-2'>
           <p>{calculateRating(course)}</p>
           <div className='flex'>
