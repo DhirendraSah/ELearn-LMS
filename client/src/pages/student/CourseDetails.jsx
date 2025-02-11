@@ -84,6 +84,7 @@ const CourseDetails = () => {
 
                   <div className='pt-8 text-gray-800'>
                     <h2 className='text-xl font-semibold'>Course Structure</h2>
+                    
                     <div className='pt-5'>
                       {courseData.courseContent.map((chapter, index) => (
                         <div key={index} className='mb-2 bg-white border border-gray-300 rounded'>
