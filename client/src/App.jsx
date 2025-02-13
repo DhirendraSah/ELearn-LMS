@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, Navigate } from "react-router-dom";
 import Home from "./pages/student/Home";
 import CoursesList from "./pages/student/CoursesList";
 import CourseDetails from "./pages/student/CourseDetails";
@@ -14,7 +14,7 @@ import MyCourses from "./pages/educator/MyCourses";
 import StudentEnrolled from "./pages/educator/StudentsEnrolled";
 
 import StudentNavbar from "./components/student/Navbar";
-
+import "quill/dist/quill.snow.css";
 const App = () => {
   const location = useLocation();
 
@@ -38,11 +38,13 @@ const App = () => {
 
         {/* Educator Routes */}
         <Route path="/educator" element={<Educator />}>
-        <Route path="dashboard" element={<Dashboard />} /> {/* Default content */}
-        <Route path="add-course" element={<AddCourse />} />
-        <Route path="my-courses" element={<MyCourses />} />
-        <Route path="student-enrolled" element={<StudentEnrolled />} />
-      </Route>
+          {/* Default route for "/educator" */}
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="add-course" element={<AddCourse />} />
+          <Route path="my-courses" element={<MyCourses />} />
+          <Route path="student-enrolled" element={<StudentEnrolled />} />
+        </Route>
       </Routes>
     </div>
   );
