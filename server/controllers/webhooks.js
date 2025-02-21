@@ -82,7 +82,11 @@ export const stripeWebhooks = async(request, response)=> {
 
         const { purchaseId} = session.data[0].metadata;
 
-        const purchaseData = await Purchase.findById(purchaseId)
+        const purchaseData = await Purchase.findById(purchaseId);
+        if (!purchaseData) {
+            console.error("❌ Purchase Not Found in Database for ID:", purchaseId);
+            return response.status(404).json({ error: "Purchase not found" });
+        }
         const userData = await User.findById(purchaseData.userId)
         const courseData = await Course.findById(purchaseData.courseId.toString())
 
